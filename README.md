@@ -51,13 +51,21 @@ A full-stack food delivery web application built with the MERN stack. Users can 
    ```bash
    npm run dev
 
-## 🔑 Environment Variables  
+## 📸 Screenshots
 
- **Create a .env file inside the backend folder with the following:**  
-   ```env
-   JWT_SECRET="random#secret"
-   STRIPE_SECRET_KEY="sk_test_51S87TZRappa94Vi4hYcP4SfrctgZyd8jDTiLDqxLs1zZwz0RwLjt7Xu7BZUTEhtJxOenB76gZdRVLJ7TuiEWQWBj00UZhe3Zoq"
-   PORT=4000
-   MONGO_URI=mongodb+srv://sadik2007120:ShibleSadik-1234@cluster0.qxhyrrz.mongodb.net/Foody
+## **Server-Client**
+
+![App Screenshot](assets/screenshots/home.png)
+![App Screenshot](assets/screenshots/menu.png)
+![App Screenshot](assets/screenshots/delivery-details.png)
+![App Screenshot](assets/screenshots/checkout.png)
+![App Screenshot](assets/screenshots/cart.png)
+
+## **Admin**
+
+![App Screenshot](assets/screenshots/admin-add.png)
+![App Screenshot](assets/screenshots/admin-list.png)
+![App Screenshot](assets/screenshots/admin-orders.png)
+
 
 
