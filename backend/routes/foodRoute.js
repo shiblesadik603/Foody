@@ -1,6 +1,7 @@
 import express from "express"
 import { addFood,listFood,removeFood } from "../controllers/foodController.js"
 import multer from "multer"
+import authMiddleware, { adminMiddleware } from "../middleware/auth.js"
 
 const foodRouter = express.Router();
 
@@ -14,11 +15,22 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({storage:storage})
+// accept only images up to 5 MB
+const upload = multer({
+  storage:storage,
+  limits:{fileSize:5*1024*1024},
+  fileFilter:(req,file,cb)=>{
+    if(file.mimetype.startsWith("image/")){
+      cb(null,true)
+    }else{
+      cb(new Error("Only image files are allowed"))
+    }
+  }
+})
 
-foodRouter.post("/add",upload.single("image"),addFood)
+foodRouter.post("/add",authMiddleware,adminMiddleware,upload.single("image"),addFood)
 foodRouter.get("/list",listFood)
-foodRouter.post("/remove",removeFood);
+foodRouter.post("/remove",authMiddleware,adminMiddleware,removeFood);
 
 
 export default foodRouter;

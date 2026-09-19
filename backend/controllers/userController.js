@@ -9,7 +9,7 @@ const loginUser = async(req,res)=>{
   try{
     const user= await userModel.findOne({email});
     if(!user){
-      return res.json({success:false,message:"User Doesn't exist"})
+      return res.json({success:false,message:"Invalid credentials"})
     }
     
     const isMatch= await bcrypt.compare(password,user.password);
@@ -18,7 +18,7 @@ const loginUser = async(req,res)=>{
     }
 
     const token=createToken(user._id);
-    res.json({success:true,token})
+    res.json({success:true,token,role:user.role})
 
   }catch(error){
     console.log(error);
@@ -27,7 +27,7 @@ const loginUser = async(req,res)=>{
 }
 
 const createToken=(id)=>{
-  return jwt.sign({id},process.env.JWT_SECRET)
+  return jwt.sign({id},process.env.JWT_SECRET,{expiresIn:"7d"})
 }
 
 //register user
